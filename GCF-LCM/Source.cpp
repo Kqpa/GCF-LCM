@@ -5,7 +5,7 @@ int main(void)
 
     int choice;
 
-    cout << "[?] => Calculate the greatest common factor or the least common factor:" << endl
+    cout << "[?] => Calculate the greatest common factor or the least common multiple:" << endl
         << "[i] => Enter `1` for greatest common factor." << endl
         << "[i] => Enter `2` for least common multiple." << endl
         << "> Enter choice: ";
@@ -21,8 +21,8 @@ int main(void)
         break;
 
     case 2:
-        cout << "[!] => Calculation Started [LCF]" << endl;
-        lcf();
+        cout << "[!] => Calculation Started [LCM]" << endl;
+        lcm();
         break;
 
     default:
@@ -98,39 +98,39 @@ void gcf(void)
         << "[OK] => The greatest common factor of " << gcf1_start << " and " << gcf2_start << " is: " << gcf << endl;
 }
 
-void lcf(void)
+void lcm(void)
 {
     int* primes;
     int prime_denominators[10000] = { 0 };
 
     int j = 0;
-    int lcf = 1;
-    int lcf1 = 0;
-    int lcf2 = 0;
+    int lcm = 1;
+    int lcm1 = 0;
+    int lcm2 = 0;
     int print_once = 0;
 
     cout << "> Enter the first number: ";
-    cin >> lcf1;
+    cin >> lcm1;
 
     cout << "> Enter the second number: ";
-    cin >> lcf2;
+    cin >> lcm2;
 
-    int lcf1_start = lcf1;
-    int lcf2_start = lcf2;
+    int lcm1_start = lcm1;
+    int lcm2_start = lcm2;
 
-    primes = calculatePrime(lcf1, lcf2);
+    primes = calculatePrime(lcm1, lcm2);
 
     for (int i = 0; i <= prime_size; i++)
     {
-        while (lcf1 % primes[i] == 0 || lcf2 % primes[i] == 0)
+        while (lcm1 % primes[i] == 0 || lcm2 % primes[i] == 0)
         {
-            if (lcf1 % primes[i] == 0)
+            if (lcm1 % primes[i] == 0)
             {
-                lcf1 = lcf1 / primes[i];
+                lcm1 = lcm1 / primes[i];
             }
-            if (lcf2 % primes[i] == 0)
+            if (lcm2 % primes[i] == 0)
             {
-                lcf2 = lcf2 / primes[i];
+                lcm2 = lcm2 / primes[i];
             }
 
             prime_denominators[j] = primes[i];
@@ -146,12 +146,12 @@ void lcf(void)
                 print_once++;
             }
 
-            cout << "[i] => " << lcf1 << "\t" << lcf2 << "\t " << prime_denominators[j] << endl;
+            cout << "[i] => " << lcm1 << "\t" << lcm2 << "\t " << prime_denominators[j] << endl;
 
             j++;
         }
 
-        if (lcf1 == 1 && lcf2 == 1)
+        if (lcm1 == 1 && lcm2 == 1)
         {
             break;
         }
@@ -161,12 +161,12 @@ void lcf(void)
     {
         if (prime_denominators[i] != 0)
         {
-            lcf = lcf * prime_denominators[i];
+            lcm = lcm * prime_denominators[i];
         }
     }
 
     cout << endl
-        << "[OK] => The least common factor of " << lcf1_start << " and " << lcf2_start << " is: " << lcf << endl;
+        << "[OK] => The least common factor of " << lcm1_start << " and " << lcm2_start << " is: " << lcm << endl;
 }
 
 int* calculatePrime(int num1, int num2)

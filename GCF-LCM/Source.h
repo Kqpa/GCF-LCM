@@ -15,6 +15,6 @@ using std::endl;
 
 static void gcf(void);
 
-static void lcf(void);
+static void lcm(void);
 
 int* calculatePrime(int, int);
